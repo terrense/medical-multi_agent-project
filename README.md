@@ -267,7 +267,14 @@ medix-agent-swarm/docs/MEMORY_GUIDE.md
 
 ## Demo Video
 
-Paste **one** working option below (delete the rest). After push, the repo home page shows a player with a **Play** button.
+<video src="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4" controls width="100%">
+  <a href="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4">Download demo video</a>
+</video>
+
+Screen recording of the MediX Web UI and agent workflow (compressed from ~47 MB to ~10 MB for GitHub).
+
+<details>
+<summary>Other ways to host or re-compress the video</summary>
 
 ### Option A — Upload via Issue (good if file is small)
 
@@ -294,31 +301,20 @@ Compress with [FFmpeg](https://ffmpeg.org/) (example, target under 10 MB):
 ffmpeg -i "医学agent录屏展示.mp4" -vcodec libx264 -crf 28 -preset fast -acodec aac -b:a 128k medix-demo.mp4
 ```
 
-### Option B — Commit video to this repo (recommended in China)
+### Option B — Commit video to this repo (already used above)
 
-1. Copy your file to `docs/assets/medix-demo.mp4` (ASCII name, H.264 mp4).
-2. Push to GitHub (under **100 MB** per file without LFS).
-3. Uncomment this block in README (remove the HTML comment wrappers):
-
-<!--
-<video src="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4" controls width="100%">
-  <a href="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4">Download demo video</a>
-</video>
--->
-
-Local commands:
+File: `docs/assets/medix-demo.mp4`. Re-compress from source if needed:
 
 ```powershell
-Copy-Item "D:\path\to\你的录屏.mp4" "docs\assets\medix-demo.mp4"
-git add docs/assets/medix-demo.mp4 README.md
-git commit -m "Add demo video"
-git push
+ffmpeg -i "source.mp4" -vf "scale=1280:-2" -c:v libx264 -crf 31 -preset medium -c:a aac -b:a 96k -movflags +faststart docs/assets/medix-demo.mp4
 ```
 
 ### Option C — GitHub Release (large files)
 
 1. Repo → **Releases → Create a new release** → attach `medix-demo.mp4`.
 2. Link in README: `[Watch demo](https://github.com/terrense/medical-multi_agent-project/releases/download/v1.0.0/medix-demo.mp4)` (adjust tag and filename).
+
+</details>
 
 ## Roadmap Ideas
 
