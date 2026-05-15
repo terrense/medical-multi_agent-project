@@ -1,0 +1,111 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06111D"/>
+      <stop offset="0.52" stop-color="#071B22"/>
+      <stop offset="1" stop-color="#031018"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#102B3A" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#071923" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" stroke="#5EEAD4" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2L10 6L2 10" fill="#5EEAD4"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <circle cx="1030" cy="110" r="230" fill="#0E7490" fill-opacity="0.18"/>
+  <circle cx="168" cy="620" r="210" fill="#14B8A6" fill-opacity="0.16"/>
+
+  <path d="M0 594H54L72 548L93 638L116 594H171L188 566L207 622L227 594H286L304 530L326 654L347 594H405L424 562L444 625L463 594H1280" stroke="#5EEAD4" stroke-opacity="0.18" stroke-width="3"/>
+
+  <text x="64" y="74" fill="#E8F8F6" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">MediX Multi-Agent Medical Assistant</text>
+  <text x="66" y="108" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="16">Swarm reasoning, clinical knowledge retrieval, and Redis + PostgreSQL + Mem0 memory architecture</text>
+
+  <g filter="url(#shadow)">
+    <rect x="74" y="185" width="230" height="122" rx="22" fill="url(#card)" stroke="#5EEAD4" stroke-opacity="0.28"/>
+    <text x="112" y="228" fill="#5EEAD4" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Web / CLI Client</text>
+    <text x="112" y="260" fill="#B6D6DD" font-family="Segoe UI, Arial, sans-serif" font-size="14">FastAPI UI</text>
+    <text x="112" y="282" fill="#B6D6DD" font-family="Segoe UI, Arial, sans-serif" font-size="14">Interactive terminal</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="408" y="162" width="286" height="168" rx="26" fill="url(#card)" stroke="#5EEAD4" stroke-opacity="0.34"/>
+    <text x="459" y="207" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Swarm Coordinator</text>
+    <text x="450" y="242" fill="#9CC7D1" font-family="Segoe UI, Arial, sans-serif" font-size="14">Routing · context enrichment · memory sync</text>
+    <rect x="444" y="265" width="214" height="34" rx="17" fill="#5EEAD4" fill-opacity="0.12" stroke="#5EEAD4" stroke-opacity="0.3"/>
+    <text x="473" y="287" fill="#5EEAD4" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">process_with_swarm()</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="798" y="154" width="378" height="186" rx="26" fill="url(#card)" stroke="#38BDF8" stroke-opacity="0.28"/>
+    <text x="852" y="199" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Specialized Agents</text>
+    <rect x="834" y="230" width="134" height="42" rx="14" fill="#0EA5E9" fill-opacity="0.16" stroke="#38BDF8" stroke-opacity="0.3"/>
+    <text x="865" y="256" fill="#BAE6FD" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">Diagnostic</text>
+    <rect x="990" y="230" width="134" height="42" rx="14" fill="#14B8A6" fill-opacity="0.16" stroke="#5EEAD4" stroke-opacity="0.3"/>
+    <text x="1020" y="256" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">Research</text>
+    <rect x="834" y="286" width="290" height="34" rx="14" fill="#111827" fill-opacity="0.35" stroke="#94A3B8" stroke-opacity="0.16"/>
+    <text x="896" y="308" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="13">skills · constraints · validation</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="92" y="438" width="250" height="128" rx="24" fill="url(#card)" stroke="#FBBF24" stroke-opacity="0.26"/>
+    <text x="135" y="483" fill="#FDE68A" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Redis</text>
+    <text x="135" y="514" fill="#C8D7DC" font-family="Segoe UI, Arial, sans-serif" font-size="14">session · blackboard · tool cache</text>
+    <text x="135" y="538" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="13">hot memory / fast context</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="514" y="438" width="250" height="128" rx="24" fill="url(#card)" stroke="#5EEAD4" stroke-opacity="0.3"/>
+    <text x="557" y="483" fill="#99F6E4" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">PostgreSQL</text>
+    <text x="557" y="514" fill="#C8D7DC" font-family="Segoe UI, Arial, sans-serif" font-size="14">authoritative memory ledger</text>
+    <text x="557" y="538" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="13">auditable PG-first persistence</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="936" y="438" width="250" height="128" rx="24" fill="url(#card)" stroke="#A78BFA" stroke-opacity="0.3"/>
+    <text x="979" y="483" fill="#DDD6FE" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Mem0</text>
+    <text x="979" y="514" fill="#C8D7DC" font-family="Segoe UI, Arial, sans-serif" font-size="14">semantic retrieval layer</text>
+    <text x="979" y="538" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="13">cross-session similar cases</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="772" y="604" width="274" height="58" rx="20" fill="#071923" stroke="#38BDF8" stroke-opacity="0.24"/>
+    <text x="821" y="639" fill="#BAE6FD" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Milvus Lite Knowledge Base</text>
+  </g>
+
+  <path d="M304 246H397" stroke="#5EEAD4" stroke-width="2.2" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <path d="M694 246H786" stroke="#5EEAD4" stroke-width="2.2" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <path d="M512 330C420 368 302 396 226 432" stroke="#FBBF24" stroke-width="2" stroke-opacity="0.9" marker-end="url(#arrow)"/>
+  <path d="M552 330V430" stroke="#5EEAD4" stroke-width="2" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <path d="M617 330C712 374 884 392 1010 430" stroke="#A78BFA" stroke-width="2" stroke-opacity="0.9" marker-end="url(#arrow)"/>
+  <path d="M926 340C920 440 915 532 910 596" stroke="#38BDF8" stroke-width="2" stroke-opacity="0.9" marker-end="url(#arrow)"/>
+
+  <text x="366" y="231" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="12">question</text>
+  <text x="711" y="231" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="12">task routing</text>
+  <text x="345" y="391" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="12">short-term</text>
+  <text x="570" y="390" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="12">PG-first write</text>
+  <text x="790" y="391" fill="#8FB7C3" font-family="Segoe UI, Arial, sans-serif" font-size="12">semantic index</text>
+
+  <rect x="66" y="646" width="505" height="34" rx="17" fill="#5EEAD4" fill-opacity="0.08" stroke="#5EEAD4" stroke-opacity="0.18"/>
+  <text x="88" y="668" fill="#B6F4EA" font-family="Segoe UI, Arial, sans-serif" font-size="13">Design principle: PostgreSQL is the source of truth; Mem0 stores retrieval metadata; Redis keeps fast runtime state.</text>
+</svg>
