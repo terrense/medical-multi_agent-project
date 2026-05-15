@@ -269,7 +269,7 @@ medix-agent-swarm/docs/MEMORY_GUIDE.md
 
 MediX Web UI · multi-agent workflow · memory recall.
 
-https://raw.githubusercontent.com/terrense/medical-multi_agent-project/main/docs/assets/medix-demo.mp4
+https://cdn.jsdelivr.net/gh/terrense/medical-multi_agent-project@main/docs/assets/medix-demo.mp4
 
 ## Roadmap Ideas
 
