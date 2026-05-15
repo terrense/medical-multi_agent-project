@@ -267,15 +267,9 @@ medix-agent-swarm/docs/MEMORY_GUIDE.md
 
 ## Demo Video
 
-MediX Web UI · multi-agent workflow · memory recall (screen recording).
+MediX Web UI · multi-agent workflow · memory recall.
 
-![MediX demo preview](docs/assets/medix-demo-preview.gif)
-
-<a href="https://github.com/terrense/medical-multi_agent-project/blob/main/docs/assets/medix-demo.mp4">
-  <img src="docs/assets/medix-demo-poster.jpg" alt="Play full demo video with audio" width="100%" />
-</a>
-
-**[▶ Play full video with audio](https://github.com/terrense/medical-multi_agent-project/blob/main/docs/assets/medix-demo.mp4)** · file: `docs/assets/medix-demo.mp4` (~10 MB)
+https://raw.githubusercontent.com/terrense/medical-multi_agent-project/main/docs/assets/medix-demo.mp4
 
 ## Roadmap Ideas
 
