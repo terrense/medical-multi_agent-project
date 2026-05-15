@@ -1,0 +1,39 @@
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#0f766e', 'primaryTextColor': '#e8f4f8', 'primaryBorderColor': '#5eead4', 'lineColor': '#5eead4', 'secondaryColor': '#102b3a', 'tertiaryColor': '#071923'}}}%%
+flowchart TB
+    subgraph CLIENT["Client Layer"]
+        WEB["Web UI<br/>FastAPI :8765"]
+        CLI["CLI<br/>main.py"]
+    end
+
+    COORD["Swarm Coordinator<br/>process_with_swarm()"]
+
+    subgraph AGENTS["Agent Layer"]
+        DIA["Diagnostic Agent"]
+        CON["Consultation Agent"]
+        RES["Research Agent"]
+    end
+
+    subgraph MEMORY["Memory Stack — PostgreSQL-first"]
+        REDIS[("Redis<br/>session · blackboard · tool cache")]
+        PG[("PostgreSQL<br/>authoritative ledger")]
+        MEM0[("Mem0<br/>semantic retrieval")]
+    end
+
+    KB[("Milvus Lite<br/>Medical Knowledge Base")]
+
+    WEB --> COORD
+    CLI --> COORD
+    COORD --> DIA
+    COORD --> CON
+    COORD --> RES
+    COORD --> REDIS
+    COORD --> MEM0
+    MEM0 -->|"pg_memory_id lookup"| PG
+    COORD --> PG
+    DIA --> KB
+    RES --> KB
+
+    classDef accent fill:#0f766e,stroke:#5eead4,color:#e8f4f8
+    classDef store fill:#102b3a,stroke:#38bdf8,color:#e8f4f8
+    class COORD accent
+    class REDIS,PG,MEM0,KB store

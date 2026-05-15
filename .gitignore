@@ -23,6 +23,7 @@ build/
 *.swp
 .DS_Store
 Thumbs.db
+docs/assets/debug.log
 
 # Logs & caches
 *.log

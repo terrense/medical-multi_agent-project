@@ -14,7 +14,43 @@ MediX is designed as a serious medical assistant prototype rather than a simple 
 
 ## Architecture
 
-![MediX Architecture](docs/assets/medix-architecture.svg)
+> GitHub **does not render SVG** inside README (security policy), so the diagram below uses **PNG**. Source files: `docs/assets/medix-architecture.mmd` (editable) and `medix-architecture.svg` (design export).
+
+![MediX Architecture](docs/assets/medix-architecture.png)
+
+<details>
+<summary>Mermaid source (click to expand — also renders on GitHub)</summary>
+
+```mermaid
+flowchart TB
+    subgraph CLIENT["Client Layer"]
+        WEB["Web UI · FastAPI"]
+        CLI["CLI · main.py"]
+    end
+    COORD["Swarm Coordinator"]
+    subgraph AGENTS["Agents"]
+        DIA["Diagnostic"]
+        CON["Consultation"]
+        RES["Research"]
+    end
+    subgraph MEMORY["Memory — PostgreSQL-first"]
+        REDIS[("Redis")]
+        PG[("PostgreSQL")]
+        MEM0[("Mem0")]
+    end
+    KB[("Milvus Lite KB")]
+    WEB --> COORD
+    CLI --> COORD
+    COORD --> DIA & CON & RES
+    COORD --> REDIS
+    COORD --> MEM0
+    MEM0 -->|pg_memory_id| PG
+    COORD --> PG
+    DIA --> KB
+    RES --> KB
+```
+
+</details>
 
 The core design principle is **PostgreSQL-first memory**:
 
@@ -47,7 +83,9 @@ User question
 ├── README.md
 ├── docs/
 │   └── assets/
-│       └── medix-architecture.svg      # Architecture diagram used above
+│       ├── medix-architecture.png      # README diagram (GitHub-safe)
+│       ├── medix-architecture.mmd      # Mermaid source
+│       └── medix-architecture.svg      # SVG export (not shown in README)
 ├── medix-agent-swarm/
 │   ├── api/server.py                   # FastAPI backend for Web UI
 │   ├── web/                            # HTML/CSS/JS medical chat interface
@@ -229,32 +267,58 @@ medix-agent-swarm/docs/MEMORY_GUIDE.md
 
 ## Demo Video
 
-Upload your screen recording, then paste the generated URL on the line below. GitHub will render it as an **inline player with a play button** on this page.
+Paste **one** working option below (delete the rest). After push, the repo home page shows a player with a **Play** button.
 
-```markdown
+### Option A — Upload via Issue (good if file is small)
+
+Put this URL on its own line (no backticks):
+
+```text
 https://github.com/user-attachments/assets/YOUR-VIDEO-ID-HERE
 ```
 
-**Recommended steps (about 2 minutes):**
+Steps: **Issues → New issue** → drag video into the box → wait until a real `https://github.com/user-attachments/assets/...` link appears → copy it.
 
-1. On GitHub, open your repo → **Issues** → **New issue** (you do not need to submit the issue).
-2. Drag your `.mp4` / `.webm` file into the description box and wait for upload to finish.
-3. Copy the URL GitHub creates (looks like `https://github.com/user-attachments/assets/...`).
-4. Paste that URL alone on its own line in this README (replace the placeholder above).
-5. Commit and push — the video will appear on the repo home page with native controls.
+If you only see `<!-- Failed to upload "xxx.mp4" -->`, the upload failed. Common fixes:
 
-**Alternative — store the file in this repository:**
+| Cause | Fix |
+|--------|-----|
+| File **> 10 MB** | Compress (see below) — Issue attachments max **10 MB** |
+| **Chinese filename** | Rename to `medix-demo.mp4` |
+| Slow / blocked network | Use Option B (commit to repo) or Option C (Release) |
+| Wrong format | Export as **H.264 `.mp4`** |
 
-1. Put the file at `docs/assets/medix-demo.mp4` (keep under ~25 MB for a smooth Git experience; use [Git LFS](https://git-lfs.github.com/) if larger).
-2. After push, use this HTML block in the README (GitHub allows `<video controls>` for repo-hosted files):
+Compress with [FFmpeg](https://ffmpeg.org/) (example, target under 10 MB):
 
-```html
-<video src="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4" controls width="100%">
-  Your browser does not support embedded video. <a href="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4">Download the demo</a>.
-</video>
+```bash
+ffmpeg -i "医学agent录屏展示.mp4" -vcodec libx264 -crf 28 -preset fast -acodec aac -b:a 128k medix-demo.mp4
 ```
 
-Replace `medix-demo.mp4` with your actual filename. Prefer **H.264 `.mp4`** for the widest compatibility.
+### Option B — Commit video to this repo (recommended in China)
+
+1. Copy your file to `docs/assets/medix-demo.mp4` (ASCII name, H.264 mp4).
+2. Push to GitHub (under **100 MB** per file without LFS).
+3. Uncomment this block in README (remove the HTML comment wrappers):
+
+<!--
+<video src="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4" controls width="100%">
+  <a href="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4">Download demo video</a>
+</video>
+-->
+
+Local commands:
+
+```powershell
+Copy-Item "D:\path\to\你的录屏.mp4" "docs\assets\medix-demo.mp4"
+git add docs/assets/medix-demo.mp4 README.md
+git commit -m "Add demo video"
+git push
+```
+
+### Option C — GitHub Release (large files)
+
+1. Repo → **Releases → Create a new release** → attach `medix-demo.mp4`.
+2. Link in README: `[Watch demo](https://github.com/terrense/medical-multi_agent-project/releases/download/v1.0.0/medix-demo.mp4)` (adjust tag and filename).
 
 ## Roadmap Ideas
 
