@@ -267,54 +267,15 @@ medix-agent-swarm/docs/MEMORY_GUIDE.md
 
 ## Demo Video
 
-<video src="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4" controls width="100%">
-  <a href="https://github.com/terrense/medical-multi_agent-project/raw/main/docs/assets/medix-demo.mp4">Download demo video</a>
-</video>
+MediX Web UI · multi-agent workflow · memory recall (screen recording).
 
-Screen recording of the MediX Web UI and agent workflow (compressed from ~47 MB to ~10 MB for GitHub).
+![MediX demo preview](docs/assets/medix-demo-preview.gif)
 
-<details>
-<summary>Other ways to host or re-compress the video</summary>
+<a href="https://github.com/terrense/medical-multi_agent-project/blob/main/docs/assets/medix-demo.mp4">
+  <img src="docs/assets/medix-demo-poster.jpg" alt="Play full demo video with audio" width="100%" />
+</a>
 
-### Option A — Upload via Issue (good if file is small)
-
-Put this URL on its own line (no backticks):
-
-```text
-https://github.com/user-attachments/assets/YOUR-VIDEO-ID-HERE
-```
-
-Steps: **Issues → New issue** → drag video into the box → wait until a real `https://github.com/user-attachments/assets/...` link appears → copy it.
-
-If you only see `<!-- Failed to upload "xxx.mp4" -->`, the upload failed. Common fixes:
-
-| Cause | Fix |
-|--------|-----|
-| File **> 10 MB** | Compress (see below) — Issue attachments max **10 MB** |
-| **Chinese filename** | Rename to `medix-demo.mp4` |
-| Slow / blocked network | Use Option B (commit to repo) or Option C (Release) |
-| Wrong format | Export as **H.264 `.mp4`** |
-
-Compress with [FFmpeg](https://ffmpeg.org/) (example, target under 10 MB):
-
-```bash
-ffmpeg -i "医学agent录屏展示.mp4" -vcodec libx264 -crf 28 -preset fast -acodec aac -b:a 128k medix-demo.mp4
-```
-
-### Option B — Commit video to this repo (already used above)
-
-File: `docs/assets/medix-demo.mp4`. Re-compress from source if needed:
-
-```powershell
-ffmpeg -i "source.mp4" -vf "scale=1280:-2" -c:v libx264 -crf 31 -preset medium -c:a aac -b:a 96k -movflags +faststart docs/assets/medix-demo.mp4
-```
-
-### Option C — GitHub Release (large files)
-
-1. Repo → **Releases → Create a new release** → attach `medix-demo.mp4`.
-2. Link in README: `[Watch demo](https://github.com/terrense/medical-multi_agent-project/releases/download/v1.0.0/medix-demo.mp4)` (adjust tag and filename).
-
-</details>
+**[▶ Play full video with audio](https://github.com/terrense/medical-multi_agent-project/blob/main/docs/assets/medix-demo.mp4)** · file: `docs/assets/medix-demo.mp4` (~10 MB)
 
 ## Roadmap Ideas
 
