@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediX · 智能医疗咨询</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="bg-layer" aria-hidden="true">
+    <svg class="ecg-line" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,60 L40,60 L50,20 L60,100 L70,60 L120,60 L130,35 L140,85 L150,60 L200,60 L210,15 L220,105 L230,60 L280,60 L290,40 L300,80 L310,60 L360,60 L370,25 L380,95 L390,60 L440,60 L450,30 L460,90 L470,60 L520,60 L530,10 L540,110 L550,60 L600,60 L610,45 L620,75 L630,60 L680,60 L690,20 L700,100 L710,60 L760,60 L770,35 L780,85 L790,60 L840,60 L850,50 L860,70 L870,60 L920,60 L930,5 L940,115 L950,60 L1000,60 L1010,40 L1020,80 L1030,60 L1080,60 L1090,28 L1100,92 L1110,60 L1200,60" />
+    </svg>
+    <div class="grid-pattern"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-ring">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+            <path d="M24 10v28M14 24h20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>MediX</h1>
+          <p>Clinical Intelligence</p>
+        </div>
+      </div>
+
+      <nav class="nav-cards">
+        <button type="button" class="nav-btn active" id="btnNewChat" title="新会话">
+          <span class="nav-icon">+</span>
+          <span>新咨询</span>
+        </button>
+        <div class="session-chip">
+          <span class="chip-label">会话 ID</span>
+          <code id="sessionDisplay">—</code>
+        </div>
+      </nav>
+
+      <div class="sidebar-meta">
+        <div class="status-pill" id="statusPill">
+          <span class="pulse-dot"></span>
+          <span id="statusText">系统就绪</span>
+        </div>
+        <ul class="feature-list">
+          <li>多智能体协作</li>
+          <li>长期记忆 · Redis / PG / Mem0</li>
+          <li>循证知识库检索</li>
+        </ul>
+      </div>
+
+      <footer class="sidebar-foot">
+        <small>信息仅供参考，不能替代执业医师诊断。</small>
+      </footer>
+    </aside>
+
+    <main class="chat-panel">
+      <header class="chat-header">
+        <div class="header-title">
+          <h2>医疗咨询台</h2>
+          <span class="badge">MediX Swarm</span>
+        </div>
+        <label class="swarm-toggle">
+          <input type="checkbox" id="swarmToggle" checked />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">群体智能模式</span>
+        </label>
+      </header>
+
+      <div class="messages-wrap" id="messagesWrap">
+        <div class="messages-pattern" aria-hidden="true"></div>
+        <div class="welcome-card" id="welcomeCard">
+          <div class="welcome-icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="8" y="12" width="48" height="40" rx="6" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 28h24M20 36h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="44" cy="44" r="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+              <path d="M44 38v12M38 44h12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>您好，我是 MediX 医疗助手</h3>
+          <p>请描述您的症状、慢病管理或用药疑问。我会结合知识库与历史会话，为您提供专业、审慎的健康参考。</p>
+          <div class="quick-prompts">
+            <button type="button" class="quick-btn" data-prompt="我最近血压偏高，饮食上应该注意什么？">高血压饮食</button>
+            <button type="button" class="quick-btn" data-prompt="干咳一周了，什么情况下需要就医？">干咳咨询</button>
+            <button type="button" class="quick-btn" data-prompt="糖尿病患者日常血糖监测有什么建议？">血糖管理</button>
+          </div>
+        </div>
+        <div class="messages" id="messages"></div>
+      </div>
+
+      <div class="composer">
+        <form id="chatForm" class="composer-form">
+          <textarea
+            id="userInput"
+            rows="1"
+            placeholder="输入您的健康问题…（Enter 发送，Shift+Enter 换行）"
+            maxlength="8000"
+            autocomplete="off"
+          ></textarea>
+          <button type="submit" class="send-btn" id="sendBtn" aria-label="发送">
+            <svg class="send-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="send-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+        <p class="composer-hint">MediX 输出仅供健康参考，急重症请立即拨打 120 或就近急诊。</p>
+      </div>
+    </main>
+  </div>
+
+  <template id="tplThinking">
+    <div class="msg-row assistant thinking-row">
+      <div class="avatar assistant-av">
+        <span class="av-spinner"></span>
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a3 3 0 0 1 3 3v1h2a2 2 0 0 1 2 2v2h-1v8a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V10H5V8a2 2 0 0 1 2-2h2V5a3 3 0 0 1 3-3z"/></svg>
+      </div>
+      <div class="bubble assistant-bubble thinking-bubble">
+        <div class="thinking-header">
+          <span class="thinking-ring"></span>
+          <span class="thinking-label">临床分析中</span>
+        </div>
+        <div class="thinking-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="thinking-sub" data-thinking-text>正在检索知识库与记忆…</p>
+      </div>
+    </div>
+  </template>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>

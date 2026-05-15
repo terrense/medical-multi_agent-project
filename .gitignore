@@ -1,0 +1,49 @@
+# Secrets — copy config.example.py to config.py locally
+config.py
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs & caches
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Vector DB / memory runtime data
+**/.mem0/
+**/milvus_lite.db/
+**/milvus_lite.db/**
+**/*.db.bak
+/tmp/qdrant/
+
+# Session exports (may contain user health text)
+medix-agent-swarm/session_summaries/*.md
+medix-agent-swarm/agent_identities/*.md
+
+# MediX-R1 local artifacts
+MediX-R1/logs/
+MediX-R1/results/
+MediX-R1/MedEvalKit/
+MediX-R1/tmp/
+MediX-R1/*.zip
